@@ -1,11 +1,22 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {gs} from '../styles';
+import {RootStackParamList} from './navigation';
 
-const LegalScreen = () => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Legal'>;
+
+const LegalScreen = ({navigation}: Props) => {
+  const onPress = () => {
+    console.log('about to go to settings page');
+    navigation.navigate('Settings');
+  };
   return (
     <View style={styles.view}>
       <Text style={[gs.text, styles.text]}>Legal screen</Text>
+      <Pressable onPress={onPress}>
+        <Text>Go to Settings</Text>
+      </Pressable>
     </View>
   );
 };

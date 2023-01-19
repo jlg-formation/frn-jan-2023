@@ -5,21 +5,21 @@
  * @format
  */
 
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useEffect, useState} from 'react';
 import {StatusBar, StyleSheet, useColorScheme} from 'react-native';
 import HomeScreen from './routes/HomeScreen';
 
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-import LoginScreen from './routes/LoginScreen';
-import SplashScreen from './routes/SplashScreen';
 import LegalScreen from './routes/LegalScreen';
-import SettingsScreen from './routes/SettingsScreen';
+import LoginScreen from './routes/LoginScreen';
 import {RootStackParamList} from './routes/navigation';
+import SettingsScreen from './routes/SettingsScreen';
+import SplashScreen from './routes/SplashScreen';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,11 +42,11 @@ function App(): JSX.Element {
         {isLoading ? (
           <SplashScreen />
         ) : isConnected ? (
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Legal" component={LegalScreen} />
-            <Stack.Screen name="Settings" component={SettingsScreen} />
-          </Stack.Navigator>
+          <Tab.Navigator initialRouteName="Home">
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Legal" component={LegalScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+          </Tab.Navigator>
         ) : (
           <LoginScreen />
         )}
