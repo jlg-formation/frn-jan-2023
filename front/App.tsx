@@ -6,7 +6,7 @@
  */
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {StatusBar, StyleSheet, useColorScheme} from 'react-native';
 import HomeScreen from './routes/HomeScreen';
@@ -18,6 +18,8 @@ import LoginScreen from './routes/LoginScreen';
 import {RootStackParamList} from './routes/navigation';
 import SettingsScreen from './routes/SettingsScreen';
 import SplashScreen from './routes/SplashScreen';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -42,7 +44,27 @@ function App(): JSX.Element {
         {isLoading ? (
           <SplashScreen />
         ) : isConnected ? (
-          <Tab.Navigator initialRouteName="Home">
+          <Tab.Navigator
+            initialRouteName="Home"
+            screenOptions={({route}) => ({
+              // eslint-disable-next-line react/no-unstable-nested-components
+              tabBarIcon: ({color, size}) => {
+                let iconName = 'home';
+
+                if (route.name === 'Home') {
+                  iconName = 'home';
+                } else if (route.name === 'Settings') {
+                  iconName = 'settings';
+                } else if (route.name === 'Legal') {
+                  iconName = 'school';
+                }
+
+                // You can return any component that you like here!
+                return <Icon name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: 'tomato',
+              tabBarInactiveTintColor: 'gray',
+            })}>
             <Tab.Screen name="Home" component={HomeScreen} />
             <Tab.Screen name="Legal" component={LegalScreen} />
             <Tab.Screen name="Settings" component={SettingsScreen} />

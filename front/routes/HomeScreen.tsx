@@ -17,11 +17,12 @@ const HomeScreen = ({navigation}: Props) => {
     navigation.navigate('Legal');
   };
 
-  const icon = <Icon name="home" size={30} color="#900" />;
   return (
     <View style={styles.view}>
       <Text style={[gs.text, styles.text]}>Home</Text>
-      <Text>{icon}</Text>
+      <Text>
+        <Icon name="home" size={30} color="#900" />
+      </Text>
       <Pressable onPress={onPress}>
         <Text>Go to Legal</Text>
       </Pressable>
