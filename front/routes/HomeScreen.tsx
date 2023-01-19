@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {gs} from '../styles';
 import {RootStackParamList} from './navigation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -15,9 +16,12 @@ const HomeScreen = ({navigation}: Props) => {
     console.log('about to go to legal page');
     navigation.navigate('Legal');
   };
+
+  const icon = <Icon name="home" size={30} color="#900" />;
   return (
     <View style={styles.view}>
       <Text style={[gs.text, styles.text]}>Home</Text>
+      <Text>{icon}</Text>
       <Pressable onPress={onPress}>
         <Text>Go to Legal</Text>
       </Pressable>
