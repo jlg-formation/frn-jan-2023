@@ -15,12 +15,14 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import LoginScreen from './routes/LoginScreen';
 import SplashScreen from './routes/SplashScreen';
+import LegalScreen from './routes/LegalScreen';
+import SettingsScreen from './routes/SettingsScreen';
 
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
-  const [isConnected, setIsConnected] = useState(true);
+  const [isConnected] = useState(true);
   const isDarkMode = useColorScheme() === 'dark';
 
   useEffect(() => {
@@ -39,8 +41,10 @@ function App(): JSX.Element {
         {isLoading ? (
           <SplashScreen />
         ) : isConnected ? (
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Legal" component={LegalScreen} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
           </Stack.Navigator>
         ) : (
           <LoginScreen />
