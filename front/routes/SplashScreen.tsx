@@ -1,12 +1,18 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
 
 const SplashScreen = () => {
   return (
     <View>
-      <Text>Hello world</Text>
+      <Image source={require('../assets/photobook.png')} style={styles.image} />
+      <Text>PhotoBook 📸</Text>
+      <ActivityIndicator />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {width: 200, height: 200},
+});
 
 export default SplashScreen;
