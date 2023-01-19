@@ -28,4 +28,11 @@ export const gs = StyleSheet.create({
     fontWeight: '500',
     textTransform: 'uppercase',
   },
+  paragraph: {
+    marginTop: 10,
+  },
+  link: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+  },
 });
