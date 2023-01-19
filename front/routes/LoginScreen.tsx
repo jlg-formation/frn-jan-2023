@@ -19,12 +19,14 @@ const LoginScreen = () => {
           <Text style={gs.text}>Mot de passe</Text>
           <TextInput style={gs.textInput} secureTextEntry={true} />
         </View>
-        <Button
-          onPress={onSubmit}
-          title="Se connecter"
-          color="black"
-          accessibilityLabel="Se connecter"
-        />
+        <View style={gs.submitButton}>
+          <Button
+            onPress={onSubmit}
+            title="Se connecter"
+            color="black"
+            accessibilityLabel="Se connecter"
+          />
+        </View>
       </View>
     </View>
   );
