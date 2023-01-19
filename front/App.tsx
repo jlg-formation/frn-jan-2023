@@ -6,7 +6,7 @@
  */
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer, RouteProp} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {StatusBar, StyleSheet, useColorScheme} from 'react-native';
 import HomeScreen from './routes/HomeScreen';
