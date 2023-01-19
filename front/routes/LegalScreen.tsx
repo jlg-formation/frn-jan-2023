@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {gs} from '../styles';
 import {RootStackParamList} from './navigation';
@@ -7,6 +7,9 @@ import {RootStackParamList} from './navigation';
 type Props = NativeStackScreenProps<RootStackParamList, 'Legal'>;
 
 const LegalScreen = ({navigation}: Props) => {
+  useEffect(() => {
+    console.log('instantiate legal screen');
+  }, []);
   const onPress = () => {
     console.log('about to go to settings page');
     navigation.navigate('Settings');
