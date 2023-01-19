@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import {gs} from '../styles';
 
 const LoginScreen = () => {
@@ -19,14 +19,14 @@ const LoginScreen = () => {
           <Text style={gs.text}>Mot de passe</Text>
           <TextInput style={gs.textInput} secureTextEntry={true} />
         </View>
-        <View style={gs.submitButton}>
-          <Button
-            onPress={onSubmit}
-            title="Se connecter"
-            color="black"
-            accessibilityLabel="Se connecter"
-          />
-        </View>
+        <Pressable
+          style={({pressed}) =>
+            pressed ? [gs.submitButton, {opacity: 0.8}] : gs.submitButton
+          }
+          onPress={onSubmit}
+          accessibilityLabel="Se connecter">
+          <Text style={gs.submitButtonText}>Se connecter</Text>
+        </Pressable>
       </View>
     </View>
   );

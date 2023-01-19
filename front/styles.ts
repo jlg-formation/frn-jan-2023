@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 
+const borderRadius = 7;
+
 export const gs = StyleSheet.create({
   text: {
     color: 'black',
@@ -10,10 +12,20 @@ export const gs = StyleSheet.create({
   },
   label: {},
   textInput: {
-    borderRadius: 7,
+    borderRadius: borderRadius,
     backgroundColor: '#eee',
   },
   submitButton: {
     marginTop: 40,
+    backgroundColor: 'black',
+    padding: 15,
+    alignItems: 'center',
+    borderRadius: borderRadius,
+  },
+
+  submitButtonText: {
+    color: 'white',
+    fontWeight: '500',
+    textTransform: 'uppercase',
   },
 });
