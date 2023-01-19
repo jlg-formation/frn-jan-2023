@@ -17,8 +17,9 @@ import LoginScreen from './routes/LoginScreen';
 import SplashScreen from './routes/SplashScreen';
 import LegalScreen from './routes/LegalScreen';
 import SettingsScreen from './routes/SettingsScreen';
+import {RootStackParamList} from './routes/navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
