@@ -5,18 +5,26 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import LoginScreen from './routes/LoginScreen';
 import SplashScreen from './routes/SplashScreen';
 
 function App(): JSX.Element {
+  const [isLoading, setIsLoading] = useState(true);
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -24,7 +32,7 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <SplashScreen />
+      {isLoading ? <SplashScreen /> : <LoginScreen />}
     </SafeAreaView>
   );
 }
