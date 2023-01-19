@@ -6,7 +6,12 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  useColorScheme,
+} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import LoginScreen from './routes/LoginScreen';
@@ -16,10 +21,6 @@ function App(): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -27,10 +28,10 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={styles.safeAreaView}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        backgroundColor={'red'}
       />
       {isLoading ? <SplashScreen /> : <LoginScreen />}
     </SafeAreaView>
@@ -38,3 +39,13 @@ function App(): JSX.Element {
 }
 
 export default App;
+
+const styles = StyleSheet.create({
+  safeAreaView: {
+    backgroundColor: 'white',
+  },
+  text: {
+    fontSize: 30,
+  },
+  textInput: {},
+});

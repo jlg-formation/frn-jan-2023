@@ -1,11 +1,12 @@
 import React from 'react';
 import {ActivityIndicator, Image, StyleSheet, Text, View} from 'react-native';
+import {gs} from '../styles';
 
 const SplashScreen = () => {
   return (
     <View style={styles.view}>
       <Image source={require('../assets/photobook.png')} style={styles.image} />
-      <Text style={styles.text}>PhotoBook 😊</Text>
+      <Text style={[gs.text, styles.text]}>PhotoBook 😊</Text>
       <ActivityIndicator
         style={styles.activityIndicator}
         size="large"
