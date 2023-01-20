@@ -10,9 +10,14 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('jlg@jlg.com');
   const [password, setPassword] = useState('');
   const onSubmit = async () => {
-    console.log('coucou');
-    const result = await api.connect(email, password);
-    setUser(result);
+    try {
+      console.log('coucou');
+      const result = await api.connect(email, password);
+      setUser(result);
+    } catch (err) {
+      console.log('err: ', err);
+      setUser(undefined);
+    }
   };
 
   return (
