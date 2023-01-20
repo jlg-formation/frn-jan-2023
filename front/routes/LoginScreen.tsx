@@ -16,7 +16,7 @@ const LoginScreen = () => {
       setErrorMsg('');
       const result = await api.connect(email, password);
       if (result === undefined) {
-        setErrorMsg('bad authentication');
+        setErrorMsg('bad user/password');
       }
       setUser(result);
     } catch (err) {
