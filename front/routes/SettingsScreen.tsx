@@ -2,11 +2,11 @@ import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {useSetRecoilState} from 'recoil';
 import {api} from '../api';
-import {authenticationState} from '../store/AuthenticationState';
+import {userState} from '../store/AuthenticationState';
 import {gs} from '../styles';
 
 const SettingsScreen = () => {
-  const setIsConnected = useSetRecoilState(authenticationState);
+  const setUser = useSetRecoilState(userState);
   const onPress = async () => {
     try {
       console.log('se deconnecter');
@@ -14,7 +14,7 @@ const SettingsScreen = () => {
     } catch (err) {
       console.log('err: ', err);
     } finally {
-      setIsConnected(false);
+      setUser(undefined);
     }
   };
   return (

@@ -2,19 +2,17 @@ import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useRecoilState} from 'recoil';
 import {api} from '../api';
-import {authenticationState} from '../store/AuthenticationState';
+import {userState} from '../store/AuthenticationState';
 import {gs} from '../styles';
 
 const LoginScreen = () => {
-  const [, setIsConnected] = useRecoilState(authenticationState);
+  const [, setUser] = useRecoilState(userState);
   const [email, setEmail] = useState('jlg@jlg.com');
   const [password, setPassword] = useState('');
   const onSubmit = async () => {
     console.log('coucou');
     const result = await api.connect(email, password);
-    if (result) {
-      setIsConnected(true);
-    }
+    setUser(result);
   };
 
   return (
