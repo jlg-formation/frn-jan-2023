@@ -1,13 +1,16 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useRecoilValue} from 'recoil';
+import {userState} from '../store/AuthenticationState';
 import {gs} from '../styles';
 import {RootStackParamList} from './navigation';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({navigation}: Props) => {
+  const user = useRecoilValue(userState);
   useEffect(() => {
     console.log('instantiate home screen');
   }, []);
@@ -19,7 +22,7 @@ const HomeScreen = ({navigation}: Props) => {
 
   return (
     <View style={styles.view}>
-      <Text style={[gs.text, styles.text]}>Home</Text>
+      <Text style={[gs.text, styles.text]}>Welcome {user?.displayName}</Text>
       <Text>
         <Icon name="home" size={30} color="#900" />
       </Text>
