@@ -9,14 +9,20 @@ const LoginScreen = () => {
   const [, setUser] = useRecoilState(userState);
   const [email, setEmail] = useState('jlg@jlg.com');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const onSubmit = async () => {
     try {
       console.log('coucou');
+      setErrorMsg('');
       const result = await api.connect(email, password);
+      if (result === undefined) {
+        setErrorMsg('bad authentication');
+      }
       setUser(result);
     } catch (err) {
       console.log('err: ', err);
       setUser(undefined);
+      setErrorMsg('technical error');
     }
   };
 
@@ -40,6 +46,9 @@ const LoginScreen = () => {
             secureTextEntry={true}
             onChangeText={setPassword}
           />
+        </View>
+        <View style={gs.error}>
+          <Text style={gs.errorText}>{errorMsg}</Text>
         </View>
         <Pressable
           style={({pressed}) =>

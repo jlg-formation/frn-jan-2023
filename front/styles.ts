@@ -35,4 +35,13 @@ export const gs = StyleSheet.create({
     color: 'blue',
     textDecorationLine: 'underline',
   },
+  error: {
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    color: 'red',
+    fontWeight: 'bold',
+  },
 });
