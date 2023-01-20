@@ -20,12 +20,22 @@ import SettingsScreen from './routes/SettingsScreen';
 import SplashScreen from './routes/SplashScreen';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {RecoilRoot, useRecoilState} from 'recoil';
+import {authenticationState} from './store/AuthenticationState';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
-function App(): JSX.Element {
+const App = () => {
+  return (
+    <RecoilRoot>
+      <RecoilApp />
+    </RecoilRoot>
+  );
+};
+
+function RecoilApp(): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
-  const [isConnected] = useState(true);
+  const [isConnected] = useRecoilState(authenticationState);
   const isDarkMode = useColorScheme() === 'dark';
 
   useEffect(() => {
