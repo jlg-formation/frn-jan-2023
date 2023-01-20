@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  Vibration,
+  View,
+} from 'react-native';
 import {useRecoilState} from 'recoil';
 import {api} from '../api';
 import {userState} from '../store/AuthenticationState';
@@ -11,6 +18,7 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const onSubmit = async () => {
+    Vibration.vibrate();
     try {
       console.log('coucou');
       setErrorMsg('');

@@ -1,16 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import {launchImageLibrary} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useRecoilValue} from 'recoil';
 import {userState} from '../store/AuthenticationState';
 import {gs} from '../styles';
 
+const appName = DeviceInfo.getApplicationName();
+
 const HomeScreen = () => {
   const user = useRecoilValue(userState);
   const [image, setImage] = useState(undefined as undefined | string);
+  const [buildId, setBuildId] = useState('');
   useEffect(() => {
-    console.log('instantiate home screen');
+    (async () => {
+      try {
+        console.log('instantiate home screen');
+        setBuildId(await DeviceInfo.getBuildId());
+      } catch (err) {
+        console.log('err: ', err);
+      }
+    })();
   }, []);
 
   const onPress = async () => {
@@ -32,6 +43,8 @@ const HomeScreen = () => {
   return (
     <View style={styles.view}>
       <Text style={[gs.text, styles.text]}>Welcome {user?.displayName}</Text>
+      <Text>AppName: {appName}</Text>
+      <Text>BuildId: {buildId}</Text>
 
       <Pressable onPress={onPress}>
         <Text>
