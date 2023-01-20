@@ -1,10 +1,14 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
+import {useRecoilState} from 'recoil';
+import {authenticationState} from '../store/AuthenticationState';
 import {gs} from '../styles';
 
 const LoginScreen = () => {
-  let onSubmit = () => {
+  const [, setIsConnected] = useRecoilState(authenticationState);
+  const onSubmit = () => {
     console.log('coucou');
+    setIsConnected(true);
   };
 
   return (
