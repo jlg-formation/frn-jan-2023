@@ -1,10 +1,21 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {useSetRecoilState} from 'recoil';
+import {api} from '../api';
+import {authenticationState} from '../store/AuthenticationState';
 import {gs} from '../styles';
 
 const SettingsScreen = () => {
-  const onPress = () => {
-    console.log('se deconnecter');
+  const setIsConnected = useSetRecoilState(authenticationState);
+  const onPress = async () => {
+    try {
+      console.log('se deconnecter');
+      await api.disconnect();
+    } catch (err) {
+      console.log('err: ', err);
+    } finally {
+      setIsConnected(false);
+    }
   };
   return (
     <View style={styles.view}>

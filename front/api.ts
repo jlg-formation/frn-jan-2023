@@ -4,6 +4,8 @@ class API {
     console.log('password: ', password);
     return true;
   }
+
+  async disconnect() {}
 }
 
 export const api = new API();
