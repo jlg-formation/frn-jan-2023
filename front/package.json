@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "apk": "npm run bundle && cd android && gradlew assembleDebug",
+    "clean": "rimraf android/app/build/outputs/apk/debug/app-debug.apk && rimraf android/app/src/main/assets/index.android.bundle"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.3",
@@ -39,6 +42,7 @@
     "metro-react-native-babel-preset": "0.73.5",
     "prettier": "^2.4.1",
     "react-test-renderer": "18.2.0",
+    "rimraf": "^4.1.1",
     "typescript": "4.8.4"
   },
   "jest": {
