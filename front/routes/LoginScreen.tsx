@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useRecoilState} from 'recoil';
+import {api} from '../api';
 import {authenticationState} from '../store/AuthenticationState';
 import {gs} from '../styles';
 
 const LoginScreen = () => {
   const [, setIsConnected] = useRecoilState(authenticationState);
-  const onSubmit = () => {
+  const [email, setEmail] = useState('jlg@jlg.com');
+  const [password, setPassword] = useState('');
+  const onSubmit = async () => {
     console.log('coucou');
-    setIsConnected(true);
+    const result = await api.connect(email, password);
+    if (result) {
+      setIsConnected(true);
+    }
   };
 
   return (
@@ -16,12 +22,21 @@ const LoginScreen = () => {
       <Text style={text}>Connexion</Text>
       <View style={gs.form}>
         <View style={gs.label}>
-          <Text style={gs.text}>Login</Text>
-          <TextInput style={gs.textInput} placeholder="Ex: jlguenego" />
+          <Text style={gs.text}>Email</Text>
+          <TextInput
+            style={gs.textInput}
+            placeholder="Ex: jlg@jlg.com"
+            defaultValue="jlg@jlg.com"
+            onChangeText={setEmail}
+          />
         </View>
         <View style={gs.label}>
           <Text style={gs.text}>Mot de passe</Text>
-          <TextInput style={gs.textInput} secureTextEntry={true} />
+          <TextInput
+            style={gs.textInput}
+            secureTextEntry={true}
+            onChangeText={setPassword}
+          />
         </View>
         <Pressable
           style={({pressed}) =>
